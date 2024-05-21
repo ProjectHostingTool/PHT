@@ -1,4 +1,4 @@
-echo -e " 
+echo -e "
 $(infolog "Commands list. Press ${RED}q ${RESET}to exit, press ${GREEN}arrows(↑ ↓ ← →)${RESET} to navigate.")
 $(setline)
 ${CYAN}get     : ${WHITE}Install a module from url 
