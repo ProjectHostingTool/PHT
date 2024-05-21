@@ -1,4 +1,4 @@
-<img width="76px" align="right" src="src/img/icon.png" alt="ICON">
+<img width="76px" align="right" src="https://github.com/ProjectHostingTool/.github/assets/83769871/a7f9bf01-1581-490c-ae7a-4345403d2330" alt="ICON">
 
 # Project Hosting Tool (PHT) 🛠️🚀
 
