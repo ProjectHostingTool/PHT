@@ -17,14 +17,10 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
 ### Prerequisites 📋
 
 - Git
-- Apt
-- Dpkg
-- Xpra
 - Docker
 - Computer 
 - Root permission
 - Network Connection
-- Debian based system
 - UNIX Like file system
 
 ### Installation 🛠️
@@ -45,6 +41,13 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
     giturl=<set git url>
     exec=<exec file, its may bash script>
     vpath=<set virtual path to install>
+
+### Supported Oses 🖥️
+
+<img width="76px" src="" alt="ICON">
+<img width="76px" src="" alt="ICON">
+<img width="76px" src="" alt="ICON">
+<img width="76px" src="" alt="ICON">
 
 ### License 📄
 

@@ -5,10 +5,6 @@ if ! [ "$UID" -eq 0 ]; then
     exit 1
 fi
 
-if ! command -v dpkg >/dev/null && ! command -v apt-get >/dev/null; then
-    echo "Distribution is not based on Debian." && exit 1
-fi
-
 if ! ping -c 1 github.com > /dev/null; then
     echo -e "You must have an internet connection!" && exit 1
 fi
@@ -26,6 +22,23 @@ successlog() {
 }
 infolog() {
     echo -e "${RESET}[${CYAN}INFO${RESET}] $1" && sleep 0.2
+}
+
+# Function to determine the package manager and install a package
+install_package() {
+    local package=$1
+    if command -v apt >/dev/null; then
+        apt install -yq "$package" &> /dev/null
+    elif command -v pacman >/dev/null; then
+        pacman -S --noconfirm "$package" &> /dev/null
+    elif command -v yum >/dev/null; then
+        yum install -y "$package" &> /dev/null
+    elif command -v dnf >/dev/null; then
+        dnf install -y "$package" &> /dev/null
+    else
+        errorlog "No suitable package manager found. Please install $package manually."
+        exit 1
+    fi
 }
 
 # Update package lists
@@ -50,47 +63,32 @@ fi
 
 banner1 2> /dev/null
 
-# Install Docker if not already installed
+# Check and install Docker
 if ! command -v docker >/dev/null; then
     infolog "Installing docker.io"
-    apt install docker.io -yq &> /dev/null
+    install_package docker.io
     if ! command -v docker >/dev/null; then
-        errorlog "Installation failed, try manually."
+        errorlog "Docker installation failed, try manually."
         exit 1
     else
-        successlog "Docker Installed."
+        successlog "Docker installed."
     fi
 else
     infolog "Docker found."
 fi
 
-# Install Git if not already installed
+# Check and install Git
 if ! command -v git >/dev/null; then
     infolog "Installing git"
-    apt install git -yq &> /dev/null
+    install_package git
     if ! command -v git >/dev/null; then
-        errorlog "Installation failed, try manually."
+        errorlog "Git installation failed, try manually."
         exit 1
     else
         successlog "Git installed."
     fi
 else
     infolog "Git found."
-fi
-
-
-# Install xpra if not already installed
-if ! command -v xpra >/dev/null; then
-    infolog "Installing git"
-    apt install xpra -yq &> /dev/null
-    if ! command -v xpra >/dev/null; then
-        errorlog "Installation failed, try manually."
-        exit 1
-    else
-        successlog "xpra installed."
-    fi
-else
-    infolog "xpra found."
 fi
 
 
