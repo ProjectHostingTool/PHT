@@ -84,10 +84,10 @@ fi
 num="$((laststaticip=$(<core/modules/staticIp.list)+1))"
 
 if [[ $num -gt 255 ]]; then
-    let num-=255
-    containerip="172.20.$num.255"
+  num=$((num - 255))
+  containerip="172.20.$num.255"
 else
-    containerip="172.20.0.$num"
+  containerip="172.20.0.$num"
 fi
 
 
