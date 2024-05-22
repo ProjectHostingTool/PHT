@@ -47,6 +47,12 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
 <img width="66px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/53eec4ac-2e9c-41a1-9210-d009a5553c56" alt="ICON">
 <img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/e15238d7-4a0e-47ea-a4d5-a0016000722b" alt="ICON">
 <img width="86px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/3410f28e-ee11-483c-88a5-d332064ffe0d" alt="ICON">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/b29bacf0-0c1d-40f1-8383-d18795c1f5fc" alt="ICON">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/44d2c1be-0bdd-4170-96be-dd4abfff8ade" alt="ICON">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/52eb6786-2f75-437e-a76e-81cedb2d0cb0" alt="ICON">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/32e788af-dff9-45bd-849c-666ad8c8f30b" alt="ICON">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/021702d2-29a2-49ab-9093-8399bc96e598" alt="ICON">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/13a899c0-aa7b-4830-bae1-bee949bfff07" alt="ICON">
 
 ### License 📄
 
