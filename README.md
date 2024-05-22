@@ -53,6 +53,7 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
 <img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/32e788af-dff9-45bd-849c-666ad8c8f30b" alt="ICON">
 <img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/021702d2-29a2-49ab-9093-8399bc96e598" alt="ICON">
 <img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/13a899c0-aa7b-4830-bae1-bee949bfff07" alt="ICON">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/a287b6e5-02c8-4e47-8e20-8563218fbfc4" alt="ICON">
 
 ### License 📄
 
