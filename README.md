@@ -44,10 +44,9 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
 
 ### Supported Oses 🖥️
 
-<img width="76px" src="" alt="ICON">
-<img width="76px" src="" alt="ICON">
-<img width="76px" src="" alt="ICON">
-<img width="76px" src="" alt="ICON">
+<img width="66px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/53eec4ac-2e9c-41a1-9210-d009a5553c56" alt="ICON">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/e15238d7-4a0e-47ea-a4d5-a0016000722b" alt="ICON">
+<img width="86px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/3410f28e-ee11-483c-88a5-d332064ffe0d" alt="ICON">
 
 ### License 📄
 
