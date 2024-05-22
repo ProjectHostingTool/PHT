@@ -91,7 +91,7 @@ docker run -d --name "$name" --net phtnetwork -e DISPLAY=$DISPLAY -e --volume="$
 
 # Set the conf file
 containerid="$(docker ps -as | grep "$name" | awk '{print $1}')"
-echo -e "name=$name\nip=$containerip\nid=$containerid\nport=90${num}:80\npath=/opt/PHT/core/modules/$name\nvpath=$vpath\nexec=$exec\ngiturl=$giturl" > "core/modules/confs/$name.conf"
+echo -e "name=$name\nip=$containerip\nid=$containerid\nport=97${num}:80\npath=/opt/PHT/core/modules/$name\nvpath=$vpath\nexec=$exec\ngiturl=$giturl" > "core/modules/confs/$name.conf"
 stopanimation "done"
 sublog "Module name        -> $name"
 sublog "Static .conf file  -> /opt/PHT/core/modules/confs/$name.conf"
