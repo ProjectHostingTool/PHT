@@ -90,7 +90,6 @@ else
   containerip="172.20.0.$num"
 fi
 
-
 while true; do
   PORT=$(shuf -i 1024-49151 -n 1)
   if ! sudo netstat -tuln | grep -q ":$PORT "; then
