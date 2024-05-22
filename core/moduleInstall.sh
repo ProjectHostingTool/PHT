@@ -86,7 +86,7 @@ containerip="172.20.0.$num"
 echo "$num" > core/modules/staticIp.list
 
 # Create Container
-docker run -d --name "$name" --net phtnetwork -e DISPLAY=$DISPLAY -e --volume="$XDG_RUNTIME_DIR/pulse/native:/tmp/pulse.socket" -v /run/user/1000/pulse:/run/user/1000/pulse -v /tmp/.X11-unix:/tmp/.X11-unix:rw --device /dev/dri:/dev/dri --privileged=true --device=/dev/snd:/dev/snd -p 90${num}:80 --ip "$containerip" -v "/opt/PHT/core/modules/$name":"$vpath" $os tail -f /dev/null > /tmp/phtdocker.log 2>&1
+docker run -d --name "$name" --net phtnetwork -e DISPLAY=$DISPLAY -e --volume="$XDG_RUNTIME_DIR/pulse/native:/tmp/pulse.socket" -v /run/user/1000/pulse:/run/user/1000/pulse -v /tmp/.X11-unix:/tmp/.X11-unix:rw --device /dev/dri:/dev/dri --privileged=true --device=/dev/snd:/dev/snd -p 97${num}:80 --ip "$containerip" -v "/opt/PHT/core/modules/$name":"$vpath" $os tail -f /dev/null > /tmp/phtdocker.log 2>&1
 [[ "$?" != 0 ]] && stopanimation "error" && sublog "$(cat /tmp/phtdocker.log)" && rm -r "$(pwd)/core/modules/$name/" && exit 1
 
 # Set the conf file
@@ -98,7 +98,7 @@ sublog "Static .conf file  -> /opt/PHT/core/modules/confs/$name.conf"
 sublog "Vpath              -> $vpath"
 sublog "Module Id          -> $containerid"
 sublog "Module IP          -> $containerip"
-sublog "Module PORT        -> 90${num}:80"
+sublog "Module PORT        -> 97${num}:80"
 sublog "Run Command        -> pht run $name"
 startanimation "Finishing..."
 docker stop $containerid
