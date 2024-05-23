@@ -5,14 +5,12 @@ if ! [ "$UID" -eq 0 ]; then
     exit 1
 fi
 
-# Log viewing shortcut
-[[ $1 =~ ^(--logs|--log) ]] && cat /opt/PHT/core/logs/* && exit 0
-
 # Main script logic
 cd /opt/PHT/
 touch /tmp/phtanimation.status &> /dev/null
 source src/colors.sh
 source src/functions.sh
+source config.cfg
 
 case "$1" in
     "get")       source core/moduleGet.sh     ;;

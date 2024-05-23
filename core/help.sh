@@ -7,5 +7,5 @@ if ! [[ -z $1 ]]; then
         esac
     done
 else
-    errorlog "You must set parameter! Ex: pht help commands"
+    source core/help/commands.sh
 fi
