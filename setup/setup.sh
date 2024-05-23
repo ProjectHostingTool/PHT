@@ -121,7 +121,6 @@ rm /tmp/colors.sh
 
 cd PHT/
 git rm --cached core/modules/staticIp.list
-git rm --cached core/logs/updater.log
 
 successlog "System files installed."
 exit 0
