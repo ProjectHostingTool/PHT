@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! [ "$UID" -eq 0 ]; then
+if ! [ "$UID" -eq 0 ]; then 
     sudo pht $@
     exit 0
 fi
