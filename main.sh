@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ! [ "$UID" -eq 0 ]; then 
-    sudo bash -c "pht $@"
+    sudo pht $@
     exit 0
 fi
 
