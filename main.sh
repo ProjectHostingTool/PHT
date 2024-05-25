@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if ! [ "$UID" -eq 0 ]; then 
-    sudo pht $@
-    exit 0
+if ! [ "$UID" -eq 0 ]; then
+    echo "You are not running as root. Please run this script with sudo or as root."
+    exit 1
 fi
 
 # Main script logic
