@@ -93,7 +93,7 @@ startanimation() {
     return 0
 }
 stopanimation() {
-    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ 'stopped' ]] && errorlog "Animation already stopped!"
+    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ 'stopped' ]] && errorlog "Animation already stopped!" && return 1
     local status="$1"
 
     if ! [[ $status =~ ("done"|"success"|"error"|"warn"|"fail") ]]; then
