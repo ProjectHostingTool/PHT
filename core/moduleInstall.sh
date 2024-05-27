@@ -16,6 +16,7 @@ do
         "exec") exec="$value" ;;
         "vpath") vpath="$value" ;;
         *) warnlog "Unknown key found: $key" ;;
+        echo -e "$value"
     esac
 done < "$conf_file"
 
