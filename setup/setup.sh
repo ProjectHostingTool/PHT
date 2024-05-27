@@ -91,7 +91,6 @@ else
     infolog "Git found."
 fi
 
-
 # Move /opt/PHT to /opt/PHT.old if it exists
 if [ -d /opt/PHT ]; then
     [[ -d /opt/PHT.old ]] && rm -r /opt/PHT.old
