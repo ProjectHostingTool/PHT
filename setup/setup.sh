@@ -112,9 +112,9 @@ fi
 
 xhost +local:docker
 
-ln -sf /opt/PHT/main.sh /bin/pht
-mkdir /opt/PHT/core/modules/confs &> /dev/null
+echo -e "sudo /opt/PHT/main.sh \$@" > /bin/pht
 chmod +x /bin/pht
+mkdir /opt/PHT/core/modules/confs &> /dev/null
 
 [[ -f setup.sh ]] && rm setup.sh
 rm /tmp/colors.sh
