@@ -75,7 +75,7 @@ animation(){
         echo -e "stopped" > /tmp/phtanimation.status
         return 0
     elif [[ $value =~ ("error"|"fail") ]]; then
-        echo -ne "\r${WHITE}[${RED}${BLINK}FAIL${STOPBLINK}${WHITE}]    ${BLUE}${message}${RESET}\n"
+        echo -ne "\r${WHITE}[${RED}${BLINK}FAIL${STOPBLINK}${WHITE}]  ${BLUE}${message}${RESET}\n"
         echo -e "stopped" > /tmp/phtanimation.status
         return 1
     elif [[ $value == "warn" ]]; then
