@@ -112,7 +112,7 @@ fi
 
 xhost +local:docker
 
-echo -e "sudo /opt/PHT/main.sh \$@" > /bin/pht
+echo -e "sudo bash /opt/PHT/main.sh \$@" > /bin/pht
 chmod +x /bin/pht
 mkdir /opt/PHT/core/modules/confs &> /dev/null
 
