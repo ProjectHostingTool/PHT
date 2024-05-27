@@ -4,6 +4,8 @@ conf_file="$2"
 [[ ! -f "$conf_file" ]] && errorlog "File not found!" && sublog "path: $conf_file" && exit 1
 [[ ! "$conf_file" =~ ".pht" ]] && warnlog "Error file format." && sublog "you must use .pht format." && exit 1
 
+cat $conf_file
+
 while IFS='=' read -r key value
 do
     if [[ -z "${key}" || ${key:0:1} == "#" ]]; then
@@ -17,7 +19,6 @@ do
         "vpath") vpath="$value" ;;
         *) warnlog "Unknown key found: $key" ;;
     esac
-echo -e "$value"
 done < "$conf_file"
 
 # Define the list of variables to check
