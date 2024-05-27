@@ -6,8 +6,8 @@ conf_file="$2"
 
 cat $conf_file
 
-while IFS='=' read -r key value
-do
+
+while IFS='=' read -r key value || [[ -n "$key" ]]; do
     if [[ -z "${key}" || ${key:0:1} == "#" ]]; then
         continue
     fi
