@@ -4,9 +4,6 @@ conf_file="$2"
 [[ ! -f "$conf_file" ]] && errorlog "File not found!" && sublog "path: $conf_file" && exit 1
 [[ ! "$conf_file" =~ ".pht" ]] && warnlog "Error file format." && sublog "you must use .pht format." && exit 1
 
-cat $conf_file
-
-
 while IFS='=' read -r key value || [[ -n "$key" ]]; do
     if [[ -z "${key}" || ${key:0:1} == "#" ]]; then
         continue
