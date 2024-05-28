@@ -1,3 +1,2 @@
 echo -e "${CYAN}|----------[PULL | MAIN]----------|${RESET}"
-git stash
-git pull origin main && git stash clear
+git pull origin main
