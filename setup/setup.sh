@@ -122,4 +122,4 @@ cd PHT/
 git rm -r --cached  core/modules/
 
 successlog "System files installed."
-exit 0
+exit 0 
