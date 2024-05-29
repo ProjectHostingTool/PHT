@@ -52,14 +52,10 @@ confindex() {
 
 isCommandExist() {
     local command="$1"
-
-    for (( i=0; i<${#command}; i++ )); do
-        char="${command:$i:1}"
-        if command -v "$command" >/dev/null 2>&1 || [[ $command =~ ('&&'|'||'|';'|'|') ]]; then
+    if command -v "$command" &> /dev/null || [[ $command =~ ('&&'|'||'|';'|'|') ]]; then
             infolog "Catch: $command"
             return 0
         fi
-    done
     return 1
 }
 
