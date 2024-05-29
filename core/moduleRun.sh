@@ -18,11 +18,11 @@ if [[ "$3" =~ ("-t"|"--terminal"|"terminal"|"-c"|"--console"|"console") ]];then
     exit 0
 fi
 
-! [[ -d "core/modules/$modulename" ]] && errorlog "Module path not found!" && sublog "/opt/PHT/core/modules/$modulename" && exit 1
+! [[ -d "core/modules/$modulename" ]] && errorlog "Module path not found!"      && sublog "/opt/PHT/core/modules/$modulename" && exit 1
 ! [[ -f "core/modules/$name/$exec" ]] && errorlog "Module exec file not found!" && sublog "/opt/PHT/core/modules/$modulename/$exec" && exit 1
 
-[[ $(docker ps -as | grep "$id" | awk '{print $1}') != "$id" ]] && errorlog "Docker ID not match!" && sublog "Reference ID -> $id" && exit 1
-[[ $(docker ps -as | grep "$id") =~ ("up"|"UP"|"Up") ]] && infolog "System already running." && exit 0
+[[ $(docker ps -as | grep "$id" | awk '{print $1}') != "$id" ]] && errorlog "Docker ID not match!"   && sublog "Reference ID -> $id" && exit 1
+[[ $(docker ps -as | grep "$id") =~ ("up"|"UP"|"Up") ]]         && infolog "System already running." && exit 0
 
 docker start $id 1> /tmp/phtrun.error && docker exec -it $id bash -c "cd $vpath && bash $vpath/$exec" ${params[@]:2} || errorlog "Something went wrong!" && exit 1
 
