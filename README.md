@@ -39,9 +39,9 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
 ### module.pht example 🏭
 
     os=<set os>
-    giturl=<set git url>
-    exec=<exec file, its may bash script>
-    vpath=<set virtual path to install>
+    giturl=<set project git url>
+    exec=<exec file name, its may bash script>
+    vpath=<set path for access codes in container>
 
 ### Supported Oses 🖥️
 
