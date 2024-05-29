@@ -49,6 +49,19 @@ confindex() {
         esac
     done < "$1"
 }
+
+isCommandExist() {
+    local command="$1"
+
+    for (( i=0; i<${#command}; i++ )); do
+        char="${command:$i:1}"
+        if command -v "$command" >/dev/null 2>&1; then
+            return 0
+        fi
+    done
+    return 1
+}
+
 runupdate() {
     (GitNetworkControl && (source core/updater.sh || errorlog "Update failed!")) || (warnlog "Github connection unavailable." && sublog "System update process skipped.")
 }

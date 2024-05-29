@@ -6,7 +6,8 @@ ${CYAN}get     : ${WHITE}Install a module from url
 \t${MAGENTA}Ex    -> ${WHITE} pht get ProjectHostingTool/template
 
 ${CYAN}run     : ${WHITE}run installed module
-\t${MAGENTA}Usage -> ${WHITE} pht run <module name>
+\t${MAGENTA}Usage -> ${WHITE} pht run <module name> <params:optional>
+\t${MAGENTA}Usage -> ${WHITE} pht run <module name> -c <params:mandatory>
 
 ${CYAN}stop    : ${WHITE}stop running module
 \t${MAGENTA}Usage -> ${WHITE} pht stop <module name>

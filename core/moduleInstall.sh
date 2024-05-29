@@ -4,17 +4,18 @@ conf_file="$2"
 [[ ! -f "$conf_file" ]] && errorlog "File not found!" && sublog "path: $conf_file" && exit 1
 [[ ! "$conf_file" =~ ".pht" ]] && warnlog "Error file format." && sublog "you must use .pht format." && exit 1
 
-while IFS='=' read -r key value || [[ -n "$key" ]]; do
-    if [[ -z "${key}" || ${key:0:1} == "#" ]]; then
-        continue
-    fi
+function commandCheck() {
+    isCommandExist "$value" && warnlog "You can not set any system command(s) in vars values!" && exit 1 || return 0
+}
 
+while IFS='=' read -r key value || [[ -n "$key" ]]; do
+    [[ -z "${key}" || ${key:0:1} == "#" ]] && continue
     case "$key" in
-        "os") os="$value" ;;
-        "giturl") giturl="$value" ;;
-        "exec") exec="$value" ;;
-        "vpath") vpath="$value" ;;
-        *) warnlog "Unknown key found: $key" ;;
+        "os")     commandCheck && os="$value"     ;;
+        "exec")   commandCheck && exec="$value"   ;;
+        "vpath")  commandCheck && vpath="$value"  ;;
+        "giturl") commandCheck && giturl="$value" ;;
+        *) warnlog "Unknown key found: $key"      ;;
     esac
 done < "$conf_file"
 
