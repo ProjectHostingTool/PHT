@@ -56,6 +56,7 @@ isCommandExist() {
     for (( i=0; i<${#command}; i++ )); do
         char="${command:$i:1}"
         if command -v "$command" >/dev/null 2>&1 && [[ $command =~ ('&&'|'||'|';'|'|') ]]; then
+            infolog "Catch: $command"
             return 0
         fi
     done
