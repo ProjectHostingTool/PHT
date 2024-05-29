@@ -112,6 +112,7 @@ fi
 xhost +local:docker
 
 echo -e "sudo bash /opt/PHT/main.sh \$@" > /bin/pht
+echo -e 'echo -e "Maybe you looking for /bin/pht, right?"' > /bin/pth
 chmod +x /bin/pht
 mkdir /opt/PHT/core/modules/confs &> /dev/null
 
