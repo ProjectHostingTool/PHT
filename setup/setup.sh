@@ -44,7 +44,7 @@ install_package() {
 # Update package lists
 apt update &> /dev/null
 
-! [[ -f /usr/bin/curl ]] && apt install curl -yq &> /dev/null
+! command -v curl >/dev/null && install_package install curl &> /dev/null
 
 curl https://raw.githubusercontent.com/ProjectHostingTool/PHT/main/src/colors.sh -s -o /tmp/colors.sh
 if [[ $(cat "/tmp/colors.sh" | head -n1) =~ "# Define color variables" ]]; then

@@ -17,11 +17,12 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
 ### Prerequisites 📋
 
 - Git
+- Bash
 - Docker
-- Computer 
+- Computer (optional)
 - Core Utils
 - Root permission
-- Network Connection
+- Network Connection (Optional)
 - UNIX Like file system
 
 ### Installation 🛠️
@@ -43,6 +44,14 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
     exec=<exec file name, its may bash script>
     vpath=<set path for access codes in container>
 
+### Preferred And Tested on ✅
+<img width="66px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/53eec4ac-2e9c-41a1-9210-d009a5553c56" alt="DEBIAN">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/b29bacf0-0c1d-40f1-8383-d18795c1f5fc" alt="UBUNTU">
+<img width="84px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/021702d2-29a2-49ab-9093-8399bc96e598" alt="Raspberry Pi">
+<img width="76px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/44d2c1be-0bdd-4170-96be-dd4abfff8ade" alt="MINT">
+
+
+
 ### Supported Oses 🖥️
 
 <img width="66px" src="https://github.com/ProjectHostingTool/PHT/assets/83769871/53eec4ac-2e9c-41a1-9210-d009a5553c56" alt="ICON">
@@ -62,6 +71,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ### Contact 📬
 
-If you have any questions or suggestions, feel free to open an issue or contact us at aegean.sword1@gmail.com
+If you have any questions or suggestions, feel free to open an issue or contact us at abra@plexusteam.org
 
 Thank you for using **Project Hosting Tool (PHT)!** We hope it makes your application management easier and more efficient. Happy hosting! 🎉
