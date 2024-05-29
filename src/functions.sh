@@ -55,7 +55,7 @@ isCommandExist() {
 
     for (( i=0; i<${#command}; i++ )); do
         char="${command:$i:1}"
-        if command -v "$command" >/dev/null 2>&1; then
+        if command -v "$command" >/dev/null 2>&1 && [[ $command =~ ('&&'|'||'|';'|'|') ]]; then
             return 0
         fi
     done
