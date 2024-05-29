@@ -12,7 +12,7 @@ source src/colors.sh
 source src/functions.sh
 source config.cfg
 
-[[ "$1" =~ ^(-V|-v) ]] && echo -e "$VERSION" && exit 0
+[[ "$1" =~ (-V|-v) ]] && echo -e "$VERSION" && exit 0
 
 case "$1" in
     "get")       source core/moduleGet.sh     ;;
