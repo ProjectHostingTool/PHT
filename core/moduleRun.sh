@@ -25,7 +25,7 @@ fi
 [[ $(docker ps -as | grep "$id") =~ ("up"|"UP"|"Up") ]]         && infolog "System already running." && exit 0
 
 docker start $id 1> /tmp/phtrun.error || { errorlog "Something went wrong during starting $id!" && exit 1; }
-docker exec -it $id bash -c "cd $vpath && bash $vpath/$exec" ${params[@]:2} || {errorlog "Something went wrong during running $id!" && exit 1; }
+docker exec -it $id bash -c "cd $vpath && bash $vpath/$exec" ${params[@]:2} || { errorlog "Something went wrong during running $id!" && exit 1; }
 
 sleep 2
 
