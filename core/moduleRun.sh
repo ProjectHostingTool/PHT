@@ -13,7 +13,7 @@ if [[ "$3" =~ ("-t"|"--terminal"|"terminal"|"-c"|"--console"|"console") ]];then
         docker start $id && docker exec -it $id ${params[@]:3}
         startanimation "Stopping..."
         docker stop $id &>/dev/null &
-        [[ "$?" == "0" ]] && (stopanimation "done" && exit 0) || (stopanimation "error" && exit 1)
+        [[ "$?" == "0" ]] && { stopanimation "done" && exit 0; } || { stopanimation "error" && exit 1; }
     fi
     exit 0
 fi
@@ -24,14 +24,14 @@ fi
 [[ $(docker ps -as | grep "$id" | awk '{print $1}') != "$id" ]] && errorlog "Docker ID not match!"   && sublog "Reference ID -> $id" && exit 1
 [[ $(docker ps -as | grep "$id") =~ ("up"|"UP"|"Up") ]]         && infolog "System already running." && exit 0
 
-docker start $id 1> /tmp/phtrun.error || (errorlog "Something went wrong during starting $id!" && exit 1)
-docker exec -it $id bash -c "cd $vpath && bash $vpath/$exec" ${params[@]:2} || (errorlog "Something went wrong during running $id!" && exit 1)
+docker start $id 1> /tmp/phtrun.error || { errorlog "Something went wrong during starting $id!" && exit 1; }
+docker exec -it $id bash -c "cd $vpath && bash $vpath/$exec" ${params[@]:2} || {errorlog "Something went wrong during running $id!" && exit 1; }
 
 sleep 2
 
 if [[ $(docker ps -as | grep "$name") =~ ("up"|"UP"|"Up") ]]; then
     startanimation "Shutdown"
-    docker stop $id &>/dev/null && (stopanimation "done" && exit 0) || (stopanimation "error" && exit 1)
+    docker stop $id &>/dev/null && {stopanimation "done" && exit 0; } || { stopanimation "error" && exit 1; }
 else
     infolog "Stopped by second or third part."
     exit 0
