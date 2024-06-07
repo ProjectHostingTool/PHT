@@ -60,7 +60,7 @@ isCommandExist() {
 }
 
 runupdate() {
-    {GitNetworkControl && { source core/updater.sh || errorlog "Update failed!"; }} ||  { warnlog "Github connection unavailable." && sublog "System update process skipped."; }
+    (GitNetworkControl && {source core/updater.sh || errorlog "Update failed!";}) || (warnlog "Github connection unavailable." && sublog "System update process skipped.")
 }
 caseelse() {
     errorlog "You must set the parameter!"
