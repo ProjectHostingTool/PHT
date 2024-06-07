@@ -31,7 +31,7 @@ sleep 2
 
 if [[ $(docker ps -as | grep "$name") =~ ("up"|"UP"|"Up") ]]; then
     startanimation "Shutdown"
-    docker stop $id &>/dev/null && {stopanimation "done" && exit 0; } || { stopanimation "error" && exit 1; }
+    docker stop $id &>/dev/null && { stopanimation "done" && exit 0; } || { stopanimation "error" && exit 1; }
 else
     infolog "Stopped by second or third part."
     exit 0
