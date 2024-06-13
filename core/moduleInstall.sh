@@ -81,13 +81,23 @@ if ! (docker images --format '{{.Repository}}' | grep -q "^$os$"); then
     [[ "$?" != 0 ]] && stopanimation "error" && sublog "$(cat /tmp/phtdocker.log)" && rm -r "$(pwd)/core/modules/$name/" && exit 1
 fi
 
-num="$((laststaticip=$(<core/modules/staticIp.list)+1))"
+laststaticip=$(<core/modules/staticIp.list)
 
-if [[ $num -gt 255 ]]; then
-  num=$((num - 255))
-  containerip="172.20.$num.255"
+segment1="${laststaticip%%.*}"
+remaining="${laststaticip#*.}"
+segment2="${remaining%%.*}"
+remaining="${remaining#*.}"
+segment3="${remaining%%.*}"
+segment4="${remaining#*.}"
+
+if [[ $segment4 -eq 255 ]]; then
+    if [[ $segment3 -eq 255 ]]; then
+        containerip="172.$((segment2 + 1)).1.1"
+    else
+        containerip="172.$segment2.$((segment3 + 1)).1"
+    fi
 else
-  containerip="172.20.0.$num"
+  containerip="172.$segment2.$segment3.$((segment4 + 1))"
 fi
 
 while true; do
@@ -98,7 +108,7 @@ while true; do
   fi
 done
 
-echo "$num" > core/modules/staticIp.list
+echo "$containerip" > core/modules/staticIp.list
 
 # Create Container
 docker run -d --name "$name" --net phtnetwork -e DISPLAY=$DISPLAY -e --volume="$XDG_RUNTIME_DIR/pulse/native:/tmp/pulse.socket" -v /run/user/1000/pulse:/run/user/1000/pulse -v /tmp/.X11-unix:/tmp/.X11-unix:rw --device /dev/dri:/dev/dri --privileged=true --device=/dev/snd:/dev/snd -p ${AVAILABLE_PORT}:80 --ip "$containerip" -v "/opt/PHT/core/modules/$name":"$vpath" $os tail -f /dev/null > /tmp/phtdocker.log 2>&1
