@@ -127,4 +127,5 @@ sublog "Module PORT        -> ${AVAILABLE_PORT}:80"
 sublog "Run Command        -> pht run $name"
 startanimation "Finishing..."
 docker stop $containerid
+chmod -R 777 /opt/PHT/core/modules/$name
 stopanimation "done"
