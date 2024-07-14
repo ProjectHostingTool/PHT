@@ -44,16 +44,16 @@ install_package() {
 
 check_and_install() {
     if ! command -v $1 >/dev/null; then
-        log "INFO" "Installing $2"
+        infolog "Installing $2"
         install_package $2
         if ! command -v $1 >/dev/null; then
-            log "ERROR" "$2 installation failed, try manually."
+            errorlog "$2 installation failed, try manually."
             exit 1
         else
-            log "SUCCESS" "$2 installed."
+            successlog "$2 installed."
         fi
     else
-        log "INFO" "$2 found."
+        infolog "$2 found."
     fi
 }
 
