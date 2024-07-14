@@ -41,6 +41,22 @@ install_package() {
     fi
 }
 
+
+check_and_install() {
+    if ! command -v $1 >/dev/null; then
+        log "INFO" "Installing $2"
+        install_package $2
+        if ! command -v $1 >/dev/null; then
+            log "ERROR" "$2 installation failed, try manually."
+            exit 1
+        else
+            log "SUCCESS" "$2 installed."
+        fi
+    else
+        log "INFO" "$2 found."
+    fi
+}
+
 # Update package lists
 apt update &> /dev/null
 
@@ -64,32 +80,10 @@ fi
 banner1 2> /dev/null
 
 # Check and install Docker
-if ! command -v docker >/dev/null; then
-    infolog "Installing docker.io"
-    install_package docker.io
-    if ! command -v docker >/dev/null; then
-        errorlog "Docker installation failed, try manually."
-        exit 1
-    else
-        successlog "Docker installed."
-    fi
-else
-    infolog "Docker found."
-fi
+check_and_install docker docker.io
 
 # Check and install Git
-if ! command -v git >/dev/null; then
-    infolog "Installing git"
-    install_package git
-    if ! command -v git >/dev/null; then
-        errorlog "Git installation failed, try manually."
-        exit 1
-    else
-        successlog "Git installed."
-    fi
-else
-    infolog "Git found."
-fi
+check_and_install git git
 
 # Move /opt/PHT to /opt/PHT.old if it exists
 if [ -d /opt/PHT ]; then
