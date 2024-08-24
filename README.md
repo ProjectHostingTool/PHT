@@ -18,6 +18,7 @@ Welcome to **Project Hosting Tool(PHT)!** PHT is a powerful tool designed to sim
 
 - Git
 - X11
+- less
 - Bash
 - Docker
 - Computer (optional)
