@@ -67,6 +67,7 @@ caseelse() {
     setline
     pht help commands
 }
+
 animation(){
     local spinner=('|' '/' '—' '\\')
     local message="$1"
@@ -92,18 +93,25 @@ animation(){
         echo -ne "\r${WHITE}[${YELLOW}WARN${WHITE}]    ${BLUE}${message}${RESET}\n"
         echo -e "stopped" > /tmp/phtanimation.status
         return 0
+    else
+        echo -ne "\r${WHITE}[${RED}${BLINK}FAIL${STOPBLINK}${WHITE}]  ${BLUE}UNKNOWN PARAMETER(${value})${RESET}\n"
+        echo -e "stopped" > /tmp/phtanimation.status
     fi
 }
+
 startanimation() {
-    ! [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ ('stopped'|''|"done"|"success"|"error"|"warn") ]] && errorlog "Animation already active!" && exit 1
-    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ ("done"|"success"|"error"|"warn") ]] && errorlog "Status file not reseted, you must check the codes!" && return 1
+    ! [[ -f /tmp/phtanimation.status ]] && touch /tmp/phtanimation.status;
+    [[ "$(cat /tmp/phtanimation.status | head -n1)" == 'true' ]] && errorlog "Animation already active!" && return 1
+    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ ("done"|"success"|"error"|"fail"|"warn") ]] && errorlog "Status file not reseted, you must check the codes!" && return 1
     [[ -z $1 ]] && errorlog "You have to set process name!" && return 1
     echo -e "true" > /tmp/phtanimation.status
     animation "$1" &
     return 0
 }
+
 stopanimation() {
     [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ 'stopped' ]] && errorlog "Animation already stopped!" && return 1
+    ! [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ 'true' ]] && errorlog "Animation not running!" && return 1
     local status="$1"
 
     if ! [[ $status =~ ("done"|"success"|"error"|"warn"|"fail") ]]; then

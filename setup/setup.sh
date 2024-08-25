@@ -1,14 +1,13 @@
 #!/bin/bash
 
 if ! [ "$UID" -eq 0 ]; then
-    echo "You are not running as root. Please run this script with sudo or as root."
+    echo "Please run this script with sudo or as root."
     exit 1
 fi
 
 if ! ping -c 1 github.com > /dev/null; then
     echo -e "You must have an internet connection!" && exit 1
 fi
-
 
 # Functions
 errorlog() {
@@ -84,6 +83,9 @@ check_and_install docker docker.io
 
 # Check and install Git
 check_and_install git git
+
+# Check and install Less
+check_and_install less less
 
 # Move /opt/PHT to /opt/PHT.old if it exists
 if [ -d /opt/PHT ]; then
