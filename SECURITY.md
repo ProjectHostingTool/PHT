@@ -8,4 +8,4 @@
 
 ## Reporting a Vulnerability
 
-User issues page to report a vulnerability.
+Use issues page to report a vulnerability.
