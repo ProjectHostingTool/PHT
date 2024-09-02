@@ -29,5 +29,5 @@ ${GREEN}--update  : ${WHITE}Get latest updates of PHT using git automatization.
 
 ${RED}--uninstall : ${WHITE}Uninstall the PHT and all modules.
 \t${MAGENTA}Usage -> ${WHITE} pht --uninstall
-\t${MAGENTA}Usage -> ${YELLOW}WARNING, ${WHITE}there is no any question for ${GREEN}apporving to proccess.
+\t${YELLOW}WARNING -> ${WHITE}there is no any question for ${GREEN}apporving to proccess.
 " | less -R
