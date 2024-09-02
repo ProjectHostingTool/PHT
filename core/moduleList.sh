@@ -5,7 +5,7 @@ conflist=("$mpath"/confs/*.conf)
 
 for file in "${conflist[@]}"; do
     confindex "$file"
-    setline
+    log.setline
     (! [[ -d "$mpath/$name" ]] && log.error "Module Path not found" && log.submessage "Path: $mpath/$name") || log.info "Name -> $name"
     ([[ $(docker ps -as | grep "${name}") =~ ("up"|"UP"|"Up") ]] && log.info "Status -> ${GREEN}UP") || log.info "Status -> ${RED}DOWN"
     (! [[ -f "$mpath/$name/$exec" ]] && log.error "Module Exec not found" && log.submessage "Path: $mpath/$name/$exec") || log.info "Exec -> $exec"

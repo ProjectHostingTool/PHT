@@ -41,7 +41,7 @@ log.info "Git URL        : $giturl"
 log.info "Exec Script    : $exec"
 log.info "VPath          : $vpath"
 
-setline
+log.setline
 
 # Check the connection
 startanimation "Checking Connection" 

@@ -5,15 +5,7 @@ GitNetworkControl() {
         return 1
     fi
 }
-setline() {
-    # Get the size of the terminal
-    local columns=$(tput cols)
-    local total=""
-    for ((i=1; i<=$columns; i++)); do
-        total+="-"
-    done
-    echo -e "$1$total"
-}
+
 confindex() {
     [[ -z $1 ]] && log.error "You have set the file path as argument" && return 1
     ! [[ -f "$1" ]] && log.error "File not found" && log.submessage "PATH -> $1" && return 1

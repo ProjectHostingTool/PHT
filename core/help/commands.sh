@@ -1,6 +1,6 @@
 echo -e "
 $(log.info "Commands list. Press ${RED}q ${RESET_COLOR}to exit, press ${GREEN}arrows(↑ ↓ ← →)${RESET_COLOR} to navigate.")
-$(setline)
+$(log.setline)
 ${CYAN}get     : ${WHITE}Install a module from url 
 \t${MAGENTA}Usage -> ${WHITE} pht get <module github url>
 \t${MAGENTA}Ex    -> ${WHITE} pht get ProjectHostingTool/template
@@ -23,7 +23,7 @@ ${CYAN}remove  : ${WHITE}remove the module
 
 ${CYAN}install : ${WHITE}install the module
 \t${MAGENTA}Usage -> ${WHITE} pht install <path/*.pht>
-$(setline)
+$(log.setline)
 ${GREEN}--update  : ${WHITE}Get latest updates of PHT using git automatization.
 \t${MAGENTA}Usage ->${WHITE} pht --update
 
