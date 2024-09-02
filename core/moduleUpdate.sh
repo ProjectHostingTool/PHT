@@ -2,7 +2,7 @@ modulename="$2"
 shift 2
 params=("$@")
 
-! [[ -f "core/modules/confs/$modulename.conf" ]] && errorlog "Module conf not found!" && sublog "/opt/PHT/core/modules/confs/$modulename.conf" && exit 1
+! [[ -f "core/modules/confs/$modulename.conf" ]] && log.error "Module conf not found!" && log.submessage "/opt/PHT/core/modules/confs/$modulename.conf" && exit 1
 
 confindex "core/modules/confs/$modulename.conf"
 
@@ -11,11 +11,11 @@ startanimation "Checking Connection"
 response=$(curl -I -s -o /dev/null -w "%{http_code}" "$giturl")
 if [ "$response" -ne 301 ]; then
     stopanimation "error"
-    sublog "Update is not possible!, HTTP status code: $response"
+    log.submessage "Update is not possible!, HTTP status code: $response"
     exit 1
 else
     stopanimation "done"
-    sublog "HTTP status code: $response"
+    log.submessage "HTTP status code: $response"
 fi
 
 # Git cloning
@@ -24,10 +24,10 @@ startanimation "Updating $name"
 git -C /opt/PHT/core/modules/$name pull $params 1> /dev/null 2> "/tmp/$name-update.log"
 if [[ $? == 0 ]]; then
     stopanimation "done"
-    sublog "$name is Up to date"
+    log.submessage "$name is Up to date"
 else
     stopanimation "error"
-    sublog "Update done but startup file not found: $(pwd)/core/modules/$name/$exec"
+    log.submessage "Update done but startup file not found: $(pwd)/core/modules/$name/$exec"
     echo -ne "Do you want to view process log? (y/N)"
     read -e updatelogchoie
     [[ $updatelogchoie =~ ^(y|Y) ]] && cat "/tmp/$name-update.log" | less
