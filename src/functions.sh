@@ -1,18 +1,3 @@
-errorlog() {
-    echo -e "${RESET}[${RED}${BLINK}ERROR${STOPBLINK}${RESET}] $1" && sleep 0.2
-}
-warnlog() {
-    echo -e "${RESET}[${YELLOW}WARN${RESET}] $1" && sleep 0.2
-}
-successlog() {
-    echo -e "${RESET}[${GREEN}SUCCESS${RESET}] $1" && sleep 0.2
-}
-infolog() {
-    echo -e "${RESET}[${CYAN}INFO${RESET}] $1" && sleep 0.2
-}
-sublog() {
-    echo -e "\t${RESET}${MAGENTA}ㄷ ${WHITE}$1" && sleep 0.2
-}
 GitNetworkControl() {
     if ping -c 1 github.com > /dev/null; then
         return 0
@@ -30,8 +15,8 @@ setline() {
     echo -e "$1$total"
 }
 confindex() {
-    [[ -z $1 ]] && errorlog "You have set the file path as argument" && return 1
-    ! [[ -f "$1" ]] && errorlog "File not found" && sublog "PATH -> $1" && return 1
+    [[ -z $1 ]] && log.error "You have set the file path as argument" && return 1
+    ! [[ -f "$1" ]] && log.error "File not found" && log.submessage "PATH -> $1" && return 1
     while IFS='=' read -r key value; do
         # Skip empty lines and comments
         [[ -z $key || ${key:0:1} == "#" ]] && continue
@@ -45,7 +30,7 @@ confindex() {
             "exec") exec="$value" ;;
             "vpath") vpath="$value" ;;
             "giturl") giturl="$value" ;;
-            *) warnlog "Unknown key found: $key" && continue ;;
+            *) log.warn "Unknown key found: $key" && continue ;;
         esac
     done < "$1"
 }
@@ -53,17 +38,17 @@ confindex() {
 isCommandExist() {
     local command="$1"
     if command -v "${command%% *}" &> /dev/null || [[ $command =~ ('&&'|'||'|';'|'|') ]]; then
-            infolog "Catch: $command"
+            log.info "Catch: $command"
             return 0
         fi
     return 1
 }
 
 runupdate() {
-    (GitNetworkControl && { source core/updater.sh || errorlog "Update failed!"; }) || { warnlog "Github connection unavailable." && sublog "System update process skipped."; }
+    (GitNetworkControl && { source core/updater.sh || log.error "Update failed!"; }) || { log.warn "Github connection unavailable." && log.submessage "System update process skipped."; }
 }
 caseelse() {
-    errorlog "You must set the parameter!"
+    log.error "You must set the parameter!"
     setline
     pht help commands
 }
@@ -101,22 +86,22 @@ animation(){
 
 startanimation() {
     ! [[ -f /tmp/phtanimation.status ]] && touch /tmp/phtanimation.status;
-    [[ "$(cat /tmp/phtanimation.status | head -n1)" == 'true' ]] && errorlog "Animation already active!" && return 1
-    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ ("done"|"success"|"error"|"fail"|"warn") ]] && errorlog "Status file not reseted, you must check the codes!" && return 1
-    [[ -z $1 ]] && errorlog "You have to set process name!" && return 1
+    [[ "$(cat /tmp/phtanimation.status | head -n1)" == 'true' ]] && log.error "Animation already active!" && return 1
+    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ ("done"|"success"|"error"|"fail"|"warn") ]] && log.error "Status file not reseted, you must check the codes!" && return 1
+    [[ -z $1 ]] && log.error "You have to set process name!" && return 1
     echo -e "true" > /tmp/phtanimation.status
     animation "$1" &
     return 0
 }
 
 stopanimation() {
-    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ 'stopped' ]] && errorlog "Animation already stopped!" && return 1
-    ! [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ 'true' ]] && errorlog "Animation not running!" && return 1
+    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ 'stopped' ]] && log.error "Animation already stopped!" && return 1
+    ! [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ 'true' ]] && log.error "Animation not running!" && return 1
     local status="$1"
 
     if ! [[ $status =~ ("done"|"success"|"error"|"warn"|"fail") ]]; then
-        errorlog "You have to set status!"
-        sublog "Usage: stopanimation <done/fail/warn>"
+        log.error "You have to set status!"
+        log.submessage "Usage: stopanimation <done/fail/warn>"
         return 1
     fi
     echo -e "$status" > /tmp/phtanimation.status
