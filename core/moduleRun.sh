@@ -25,7 +25,7 @@ fi
 [[ $(docker ps -as | grep "$id") =~ ("up"|"UP"|"Up") ]] && log.info "System already running."  && log.submessage "if you want to connect use '--console' parameter." && exit 0
 
 docker start $id 1> /tmp/phtrun.error || { log.error "Something went wrong during starting $id!" && exit 1; }
-docker exec -it $id bash -c "cd $vpath && bash $vpath/$exec" ${params[@]:2} || { log.error "Something went wrong during running $id!" && exit 1; }
+docker exec -it $id bash -c "cd $vpath && bash $vpath/$exec" ${params[@]:2} # || { log.error "Something went wrong during running $id!" && exit 1; }
 
 sleep 2
 
