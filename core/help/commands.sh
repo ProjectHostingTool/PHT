@@ -1,5 +1,5 @@
 echo -e "
-$(log.info "Commands list. Press ${RED}q ${RESET}to exit, press ${GREEN}arrows(↑ ↓ ← →)${RESET} to navigate.")
+$(log.info "Commands list. Press ${RED}q ${RESET_COLOR}to exit, press ${GREEN}arrows(↑ ↓ ← →)${RESET_COLOR} to navigate.")
 $(setline)
 ${CYAN}get     : ${WHITE}Install a module from url 
 \t${MAGENTA}Usage -> ${WHITE} pht get <module github url>

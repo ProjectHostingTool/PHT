@@ -67,19 +67,19 @@ animation(){
     value="$(cat /tmp/phtanimation.status | head -n1)"
 
     if [[ $value =~ ("done"|"success") ]]; then
-        echo -ne "\r${WHITE}[${GREEN}SUCCESS${WHITE}] ${BLUE}${message}${RESET}\n"
+        echo -ne "\r${WHITE}[${GREEN}SUCCESS${WHITE}] ${BLUE}${message}${RESET_COLOR}\n"
         echo -e "stopped" > /tmp/phtanimation.status
         return 0
     elif [[ $value =~ ("error"|"fail") ]]; then
-        echo -ne "\r${WHITE}[${RED}${BLINK}FAIL${STOPBLINK}${WHITE}]  ${BLUE}${message}${RESET}\n"
+        echo -ne "\r${WHITE}[${RED}${BLINK}FAIL${STOPBLINK}${WHITE}]  ${BLUE}${message}${RESET_COLOR}\n"
         echo -e "stopped" > /tmp/phtanimation.status
         return 1
     elif [[ $value == "warn" ]]; then
-        echo -ne "\r${WHITE}[${YELLOW}WARN${WHITE}]    ${BLUE}${message}${RESET}\n"
+        echo -ne "\r${WHITE}[${YELLOW}WARN${WHITE}]    ${BLUE}${message}${RESET_COLOR}\n"
         echo -e "stopped" > /tmp/phtanimation.status
         return 0
     else
-        echo -ne "\r${WHITE}[${RED}${BLINK}FAIL${STOPBLINK}${WHITE}]  ${BLUE}UNKNOWN PARAMETER(${value})${RESET}\n"
+        echo -ne "\r${WHITE}[${RED}${BLINK}FAIL${STOPBLINK}${WHITE}]  ${BLUE}UNKNOWN PARAMETER(${value})${RESET_COLOR}\n"
         echo -e "stopped" > /tmp/phtanimation.status
     fi
 }
@@ -87,7 +87,7 @@ animation(){
 startanimation() {
     ! [[ -f /tmp/phtanimation.status ]] && touch /tmp/phtanimation.status;
     [[ "$(cat /tmp/phtanimation.status | head -n1)" == 'true' ]] && log.error "Animation already active!" && return 1
-    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ ("done"|"success"|"error"|"fail"|"warn") ]] && log.error "Status file not reseted, you must check the codes!" && return 1
+    [[ "$(cat /tmp/phtanimation.status | head -n1)" =~ ("done"|"success"|"error"|"fail"|"warn") ]] && log.error "Status file not RESET_COLORed, you must check the codes!" && return 1
     [[ -z $1 ]] && log.error "You have to set process name!" && return 1
     echo -e "true" > /tmp/phtanimation.status
     animation "$1" &

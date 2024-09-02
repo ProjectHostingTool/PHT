@@ -8,6 +8,6 @@ banner1() {
     echo -e " ░███░░░░░░   ░███░░░░░███     ░███" && sleep 0.2
     echo -e " ░███         ░███    ░███     ░███" && sleep 0.2
     echo -e " █████        █████   █████    █████" && sleep 0.2
-    echo -e "░░░░░        ░░░░░   ░░░░░    ░░░░░    ${GREEN}version : ${MAGENTA}1.0${RESET}
+    echo -e "░░░░░        ░░░░░   ░░░░░    ░░░░░    ${GREEN}version : ${MAGENTA}1.0${RESET_COLOR}
     "
 }

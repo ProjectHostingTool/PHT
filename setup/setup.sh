@@ -14,13 +14,13 @@ errorlog() {
     echo -e "${RESEST}[${RED}${BLINK}ERROR${STOPBLINK}${RESEST}] $1" && sleep 0.2
 }
 warnlog() {
-    echo -e "${RESET}[${YELLOW}WARN${RESET}] $1" && sleep 0.2
+    echo -e "${RESET_COLOR}[${YELLOW}WARN${RESET_COLOR}] $1" && sleep 0.2
 }
 successlog() {
-    echo -e "${RESET}[${GREEN}SUCCESS${RESET}] $1" && sleep 0.2
+    echo -e "${RESET_COLOR}[${GREEN}SUCCESS${RESET_COLOR}] $1" && sleep 0.2
 }
 infolog() {
-    echo -e "${RESET}[${CYAN}INFO${RESET}] $1" && sleep 0.2
+    echo -e "${RESET_COLOR}[${CYAN}INFO${RESET_COLOR}] $1" && sleep 0.2
 }
 
 # Function to determine the package manager and install a package

@@ -9,7 +9,7 @@ fi
 cd /opt/PHT/
 touch /tmp/phtanimation.status &> /dev/null
 source src/logging.lib
-source src/colors.sh
+source src/colors.lib
 source src/functions.sh
 source config.cfg
 
