@@ -23,6 +23,10 @@ ${CYAN}remove  : ${WHITE}remove the module
 
 ${CYAN}install : ${WHITE}install the module
 \t${MAGENTA}Usage -> ${WHITE} pht install <path/*.pht>
+
+${CYAN}update  : ${WHITE}Update the module from github as latest publish 
+\t${MAGENTA}Usage -> ${WHITE} pht update <module name>
+
 $(log.setline)
 ${GREEN}--update  : ${WHITE}Get latest updates of PHT using git automatization.
 \t${MAGENTA}Usage ->${WHITE} pht --update
