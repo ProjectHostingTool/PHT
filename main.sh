@@ -6,6 +6,7 @@ if ! [ "$UID" -eq 0 ]; then
 fi
 
 # Main script logic
+callerwd="$(pwd)"
 cd /opt/PHT/
 touch /tmp/phtanimation.status &> /dev/null
 source src/logging.lib

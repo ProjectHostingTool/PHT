@@ -1,6 +1,10 @@
 #!/bin/bash
 
 conf_file="$2"
+if ! [[ "${conf_file:0:1}" == "/" ]]; then
+    conf_file="$callerwd/$conf_file"
+fi
+
 [[ ! -f "$conf_file" ]] && log.error "File not found!" && log.submessage "path: $conf_file" && exit 1
 [[ ! "$conf_file" =~ ".pht" ]] && log.warn "Error file format." && log.submessage "you must use .pht format." && exit 1
 
@@ -15,7 +19,7 @@ while IFS='=' read -r key value || [[ -n "$key" ]]; do
         "exec")   commandCheck && exec="$value"   ;;
         "vpath")  commandCheck && vpath="$value"  ;;
         "giturl") commandCheck && giturl="$value" ;;
-        *) log.warn "Unknown key found: $key"      ;;
+        *) log.warn "Unknown key found: $key"     ;;
     esac
 done < "$conf_file"
 
