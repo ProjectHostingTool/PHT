@@ -21,6 +21,7 @@ fi
 # Git cloning
 startanimation "Updating $name"
 [[ -z $params ]] && params="origin main"
+git -C /opt/PHT/core/modules/$name reset --hard
 git -C /opt/PHT/core/modules/$name pull $params 1> /dev/null 2> "/tmp/$name-update.log"
 if [[ $? == 0 ]]; then
     stopanimation "done"
