@@ -62,7 +62,7 @@ apt update &> /dev/null
 ! command -v curl >/dev/null && install_package install curl &> /dev/null
 
 curl https://raw.githubusercontent.com/ProjectHostingTool/PHT/main/src/colors.lib -s -o /tmp/colors.sh
-if [[ $(cat "/tmp/colors.sh" | head -n1) =~ "# Define color variables" ]]; then
+if [[ $(cat "/tmp/colors.sh" | head -n5) =~ "# Define color variables" ]]; then
     source "/tmp/colors.sh"
 else
     errorlog "Colors not imported, you have to check github.com connection."
