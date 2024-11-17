@@ -1,5 +1,5 @@
-modulename="$2"
 params=("$@")
+modulename="$2"
 [[ -z $modulename ]] && log.error "You have to set module name!" && exit 1
 ! [[ -f "core/modules/confs/$modulename.conf" ]] && log.error "Module conf not found!" && log.submessage "/opt/PHT/core/modules/confs/$modulename.conf" && exit 1
 ! [[ -d "core/modules/$modulename" ]] && log.error "Module path not found!"      && log.submessage "/opt/PHT/core/modules/$modulename" && exit 1
