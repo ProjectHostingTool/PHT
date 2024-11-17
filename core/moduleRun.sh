@@ -26,7 +26,7 @@ fi
 
 docker start $id 1> /tmp/phtrun.error || { log.error "Something went wrong during starting $id!" && exit 1; }
 cutparam=${params[@]:2}
-docker exec -it $id bash -c "cd $vpath && bash $exec ${params[@]:2}"  # || { log.error "Something went wrong during running $id!" && exit 1; }
+docker exec -it $id bash -c "cd $vpath && bash $exec $cutparam"  # || { log.error "Something went wrong during running $id!" && exit 1; }
 
 sleep 2
 
