@@ -17,6 +17,7 @@ source config.cfg
 [[ "$1" =~ (-V|-v) ]] && echo -e "$VERSION" && exit 0
 [[ "$@" =~ "--update" ]] && runupdate && exit 0
 [[ "$@" =~ "--uninstall" ]] && source core/uninstall.sh  && exit 0
+[[ "$@" =~ "--help" ]] && source core/help.sh && exit 0
 
 case "$1" in
     "get")       source core/moduleGet.sh     ;;

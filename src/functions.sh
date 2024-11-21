@@ -41,7 +41,7 @@ runupdate() {
 }
 caseelse() {
     log.error "You must set the parameter!"
-    setline
+    log.setline
     pht help commands
 }
 
