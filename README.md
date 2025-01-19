@@ -110,6 +110,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ### Contact 📬
 
-If you have any questions or suggestions, feel free to open an issue or contact us at abra@plexusteam.org
+If you have any questions or suggestions, feel free to open an issue or contact us at egekilic@proton.me
 
 Thank you for using **Project Hosting Tool (PHT)!** We hope it makes your application management easier and more efficient. Happy hosting! 🎉
