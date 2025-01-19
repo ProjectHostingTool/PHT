@@ -7,7 +7,7 @@ fi
 
 # Main script logic
 callerwd="$(pwd)"
-#cd /opt/PHT/
+cd /opt/PHT/
 touch /tmp/phtanimation.status &> /dev/null
 source src/logging.lib
 source src/colors.lib
