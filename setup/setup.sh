@@ -105,11 +105,7 @@ fi
 
 ! [[ $(docker network ls | grep phtnetwork) =~ "phtnetwork" ]] && (docker network create --subnet=172.20.0.0/16 --gateway=172.20.0.1 phtnetwork 1>/dev/null || (errorlog "Docker network setup fail!" && exit 1))
 
-
-
-if ! [ -n "$WAYLAND_DISPLAY" ]; then
-    xhost +local:docker
-fi
+which xhost &> /dev/null && xhost +local:docker
 
 echo -e "sudo bash /opt/PHT/main.sh \$@" > /bin/pht
 echo -e 'echo -e "Maybe you looking for /bin/pht, right?"' > /bin/pth
