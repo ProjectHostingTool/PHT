@@ -63,10 +63,10 @@ fi
 
 
 # Install Depends
-    if [[ command -v pacman ]]; then
+    if [[ $(command -v pacman) ]]; then
     log.info "Installıng docker git and less"
     (pacman -S docker git less curl --noconfirm &> /tmp/phtsetup.log && log.done "Installation done") || (log.error "Installation faild" && cat /tmp/phtsetup.log | less)
-    elif [[ command -v apt ]]; then
+    elif [[ $(command -v apt) ]]; then
     log.info "Installıng docker git and less"
     (apt update && apt install docker.io git less curl -yq &> /tmp/phtsetup.log && log.done "Installation done") || (log.error "Installation faild" && cat /tmp/phtsetup.log | less)
     else
