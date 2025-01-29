@@ -28,7 +28,7 @@ fi
 TIMESTAMP_FORMAT="%H:%M:%S"   # Shorter time format (HH:MM:SS)
 
 # Function to log with a specific level
-function log.message() {
+function log() {
     local level="$1"
     local color="$2"
     local message="$3"
@@ -36,25 +36,25 @@ function log.message() {
     echo -e "${RESET_COLOR} [${color}$level${RESET_COLOR}]${color}>${RESET_COLOR} $message"
 }
 
-function log.submessage() {
-    echo -e "\t${RESET_COLOR}${COLOR_GENERIC}o \e[0;37m$1" && sleep 0.2
-}
-
 # Log levels
 function log.info() {
-    log.message "INFO" "$COLOR_INFO" "$1"
+    log "INFO" "$COLOR_INFO" "$1"
 }
 
 function log.warn() {
-    log.message "WARN" "$COLOR_WARN" "$1"
+    log "WARN" "$COLOR_WARN" "$1"
 }
 
 function log.error() {
-    log.message "ERROR" "$COLOR_ERROR" "$1"
+    log "ERROR" "$COLOR_ERROR" "$1"
 }
 
 function log.done() {
-    log.message "DONE" "$COLOR_DONE" "$1"
+    log "DONE" "$COLOR_DONE" "$1"
+}
+
+function log.sub() {
+    echo -e "\t${RESET_COLOR}${COLOR_GENERIC}o \e[0;37m$1" && sleep 0.2
 }
 
 function log.setline() {
@@ -72,7 +72,7 @@ alias logi='log.info'
 alias logw='log.warn'
 alias loge='log.error'
 alias logd='log.done'
-alias logsub='log.submessage'
+alias logsub='log.sub'
 
 # Example usage (you can comment these out or remove them)
 # log.info "This is an info message."
@@ -86,7 +86,7 @@ logging.test() {
     log.warn "This is a warning message."
     log.error "This is an error message."
     log.done "This task is complete."
-    log.submessage "This is a sub log."
+    log.sub "This is a sub log."
     log.setline
 
     # Or using aliases

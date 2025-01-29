@@ -8,7 +8,7 @@ GitNetworkControl() {
 
 confindex() {
     [[ -z $1 ]] && log.error "You have set the file path as argument" && return 1
-    ! [[ -f "$1" ]] && log.error "File not found" && log.submessage "PATH -> $1" && return 1
+    ! [[ -f "$1" ]] && log.error "File not found" && log.sub "PATH -> $1" && return 1
     while IFS='=' read -r key value; do
         # Skip empty lines and comments
         [[ -z $key || ${key:0:1} == "#" ]] && continue
@@ -37,7 +37,7 @@ isCommandExist() {
 }
 
 runupdate() {
-    (GitNetworkControl && { source core/updater.sh || log.error "Update failed!"; }) || { log.warn "Github connection unavailable." && log.submessage "System update process skipped."; }
+    (GitNetworkControl && { source core/updater.sh || log.error "Update failed!"; }) || { log.warn "Github connection unavailable." && log.sub "System update process skipped."; }
 }
 caseelse() {
     log.error "You must set the parameter!"
@@ -93,7 +93,7 @@ stopanimation() {
 
     if ! [[ $status =~ ("done"|"success"|"error"|"warn"|"fail") ]]; then
         log.error "You have to set status!"
-        log.submessage "Usage: stopanimation <done/fail/warn>"
+        log.sub "Usage: stopanimation <done/fail/warn>"
         return 1
     fi
     echo -e "$status" > /tmp/phtanimation.status

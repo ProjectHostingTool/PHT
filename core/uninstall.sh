@@ -10,4 +10,4 @@ rm /bin/pht
 docker network rm phtnetwork &>/dev/null || log.warn "Docker phtnetwork cannot removed!"
 
 log.info "GoodBye :)"
-log.submessage "Github : https://github.com/PlexusNetworkSystem/PHT"
+log.sub "Github : https://github.com/PlexusNetworkSystem/PHT"

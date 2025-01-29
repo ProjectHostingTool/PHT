@@ -9,7 +9,7 @@ fi
 callerwd="$(pwd)"
 cd /opt/PHT/
 touch /tmp/phtanimation.status &> /dev/null
-source src/logging.lib
+source src/log.lib
 source src/colors.lib
 source src/functions.sh
 source config.cfg

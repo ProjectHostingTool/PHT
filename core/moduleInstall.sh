@@ -5,8 +5,8 @@ if ! [[ "${conf_file:0:1}" == "/" ]]; then
     conf_file="$callerwd/$conf_file"
 fi
 
-[[ ! -f "$conf_file" ]] && log.error "File not found!" && log.submessage "path: $conf_file" && exit 1
-[[ ! "$conf_file" =~ ".pht" ]] && log.warn "Error file format." && log.submessage "you must use .pht format." && exit 1
+[[ ! -f "$conf_file" ]] && log.error "File not found!" && log.sub "path: $conf_file" && exit 1
+[[ ! "$conf_file" =~ ".pht" ]] && log.warn "Error file format." && log.sub "you must use .pht format." && exit 1
 
 function commandCheck() {
     isCommandExist "$value" && log.warn "You can not set any system command(s) in vars values!" && exit 1 || return 0
@@ -52,11 +52,11 @@ startanimation "Checking Connection"
 response=$(curl -I -s -o /dev/null -w "%{http_code}" "$giturl")
 if [ "$response" -ne 301 ]; then
     stopanimation "error"
-    log.submessage "Cloning is not possible!, HTTP status code: $response"
+    log.sub "Cloning is not possible!, HTTP status code: $response"
     exit 1
 else
     stopanimation "done"
-    log.submessage "HTTP status code: $response"
+    log.sub "HTTP status code: $response"
 fi
 
 # Git cloning
@@ -64,15 +64,15 @@ startanimation "Cloning $name"
 git clone "$giturl" "core/modules/$name" &>/dev/null
 if ! [[ -d "core/modules/$name/" ]]; then
     stopanimation "error"
-    log.submessage "Path not found: $(pwd)/core/modules/$name"
+    log.sub "Path not found: $(pwd)/core/modules/$name"
     exit 1
 else
     if [[ -f "core/modules/$name/$exec" ]]; then
         stopanimation "done"
-        log.submessage "Run File setted -> $(pwd)/core/modules/$name/$exec"
+        log.sub "Run File setted -> $(pwd)/core/modules/$name/$exec"
     else
         stopanimation "error"
-        log.submessage "Startup file not found: $(pwd)/core/modules/$name/$exec"
+        log.sub "Startup file not found: $(pwd)/core/modules/$name/$exec"
         rm -r "$(pwd)/core/modules/$name/"
         exit 1
     fi
@@ -82,7 +82,7 @@ fi
 startanimation "Setup Container" 
 if ! (docker images --format '{{.Repository}}' | grep -q "^$os$"); then
     docker pull $os 1>/dev/null 2>/tmp/phtdocker.log
-    [[ "$?" != 0 ]] && stopanimation "error" && log.submessage "$(cat /tmp/phtdocker.log)" && rm -r "$(pwd)/core/modules/$name/" && exit 1
+    [[ "$?" != 0 ]] && stopanimation "error" && log.sub "$(cat /tmp/phtdocker.log)" && rm -r "$(pwd)/core/modules/$name/" && exit 1
 fi
 
 laststaticip=$(<core/modules/staticIp.list)
@@ -140,19 +140,19 @@ docker run -d \
   $os tail -f /dev/null > /tmp/phtdocker.log 2>&1
 
 
-[[ "$?" != 0 ]] && stopanimation "error" && log.submessage "$(cat /tmp/phtdocker.log)" && rm -r "$(pwd)/core/modules/$name/" && exit 1
+[[ "$?" != 0 ]] && stopanimation "error" && log.sub "$(cat /tmp/phtdocker.log)" && rm -r "$(pwd)/core/modules/$name/" && exit 1
 
 # Set the conf file
 containerid="$(docker ps -as | grep "$name" | awk '{print $1}')"
 echo -e "name=$name\nip=$containerip\nid=$containerid\nport=${AVAILABLE_PORT}:80\npath=/opt/PHT/core/modules/$name\nvpath=$vpath\nexec=$exec\ngiturl=$giturl" > "core/modules/confs/$name.conf"
 stopanimation "done"
-log.submessage "Module name        -> $name"
-log.submessage "Static .conf file  -> /opt/PHT/core/modules/confs/$name.conf"
-log.submessage "Vpath              -> $vpath"
-log.submessage "Module Id          -> $containerid"
-log.submessage "Module IP          -> $containerip"
-log.submessage "Module PORT        -> ${AVAILABLE_PORT}:80"
-log.submessage "Run Command        -> pht run $name"
+log.sub "Module name        -> $name"
+log.sub "Static .conf file  -> /opt/PHT/core/modules/confs/$name.conf"
+log.sub "Vpath              -> $vpath"
+log.sub "Module Id          -> $containerid"
+log.sub "Module IP          -> $containerip"
+log.sub "Module PORT        -> ${AVAILABLE_PORT}:80"
+log.sub "Run Command        -> pht run $name"
 startanimation "Finishing..."
 docker stop $containerid
 chmod -R 777 /opt/PHT/core/modules/$name
