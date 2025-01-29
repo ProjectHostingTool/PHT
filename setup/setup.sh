@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! [ "$UID" -eq 0 ]; then
+if ! [[ $(whoami) == "root" ]]; then
     echo "Please run this script with sudo or as root."
     exit 1
 fi
@@ -64,15 +64,14 @@ fi
 
 # Install Depends
     if [[ $(command -v pacman) ]]; then
-    log.info "Installıng docker git and less"
-    (pacman -S docker git less curl --noconfirm &> /tmp/phtsetup.log && log.done "Installation done") || (log.error "Installation faild" && cat /tmp/phtsetup.log | less)
+        log.info "Installing docker git and less"
+        (pacman -S docker git less curl --noconfirm &> /tmp/phtsetup.log && log.done "Installation done") || (log.error "Installation faild" && cat /tmp/phtsetup.log | less && exit 1)
     elif [[ $(command -v apt) ]]; then
-    log.info "Installıng docker git and less"
-    (apt update && apt install docker.io git less curl -yq &> /tmp/phtsetup.log && log.done "Installation done") || (log.error "Installation faild" && cat /tmp/phtsetup.log | less)
+        log.info "Installing docker git and less"
+        (apt update && apt install docker.io git less curl -yq &> /tmp/phtsetup.log && log.done "Installation done") || (log.error "Installation faild" && cat /tmp/phtsetup.log | less && exit 1)
     else
-    log.warn "Please Install docker, git and less first" && exit 1
+        log.warn "Please Install docker, git and less first" && exit 1
     fi
-
 
 # Move /opt/PHT to /opt/PHT.old if it exists
     if [ -d /opt/PHT ]; then
@@ -94,7 +93,6 @@ fi
     mkdir /opt/PHT/core/modules/confs &> /dev/null
 
     [[ -f setup.sh ]] && rm setup.sh
-    rm /tmp/colors.sh
 
     cd /opt/PHT
     git rm -r --cached core/modules/
