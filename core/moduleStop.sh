@@ -13,5 +13,5 @@ else
         exit 1
     fi
     startanimation "Shutdown $name"
-    docker stop $id &>/dev/null && (stopanimation "done" && exit 0) || (stopanimation "error" && exit 1)
+    docker stop $id -t 1 &>/dev/null && (stopanimation "done" && exit 0) || (stopanimation "error" && exit 1)
 fi

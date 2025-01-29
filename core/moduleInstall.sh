@@ -154,6 +154,6 @@ log.sub "Module IP          -> $containerip"
 log.sub "Module PORT        -> ${AVAILABLE_PORT}:80"
 log.sub "Run Command        -> pht run $name"
 startanimation "Finishing..."
-docker stop $containerid
+docker stop $containerid -t 1
 chmod -R 777 /opt/PHT/core/modules/$name
 stopanimation "done"

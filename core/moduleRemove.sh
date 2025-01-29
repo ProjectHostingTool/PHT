@@ -10,7 +10,7 @@ if [[ $(docker ps -as | grep "$name") =~ ("Up"|"up") ]]; then
         exit 1
     fi
     startanimation "Shutdown $name"
-    docker stop $id &>/dev/null && (stopanimation "done") || { stopanimation "error" && exit 1; }
+    docker stop $id -t 1 &>/dev/null && (stopanimation "done") || { stopanimation "error" && exit 1; }
 fi
 startanimation "Remove $name"
 rm core/modules/confs/$modulename.conf || { stopanimation "error" && log.error "Conf can not removed!" && log.sub "PATH -> /opt/PHT/core/modules/confs/$modulename.conf" && exit 1; }

@@ -15,7 +15,7 @@ if [[ "$3" =~ ("-t"|"--terminal"|"terminal"|"-c"|"--console"|"console") ]];then
     else 
         docker start $id && docker exec -it $id ${params[@]:3}
         startanimation "Stopping..."
-        docker stop $id &>/dev/null &
+        docker stop $id -t 1 &>/dev/null &
         [[ "$?" == "0" ]] && { stopanimation "done" && exit 0; } || { stopanimation "error" && exit 1; }
     fi
     exit 0
@@ -32,7 +32,7 @@ sleep 2
 
 if [[ $(docker ps -as | grep "$name") =~ ("up"|"UP"|"Up") ]]; then
     startanimation "Shutdown"
-    docker stop $id &>/dev/null && { stopanimation "done" && exit 0; } || { stopanimation "error" && exit 1; }
+    docker stop $id -t 1 &>/dev/null && { stopanimation "done" && exit 0; } || { stopanimation "error" && exit 1; }
 else
     log.info "Stopped by second or third part."
     exit 0
